@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78">
+  <defs>
+    <filter id="Ellipse_90" x="0" y="0" width="78" height="78" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4d9f75" stop-opacity="0"/>
+      <stop offset="0.196" stop-color="#4d9f75" stop-opacity="0"/>
+      <stop offset="1" stop-color="#4d9f75"/>
+    </radialGradient>
+  </defs>
+  <g id="icon_pageLoading" transform="translate(9 9)">
+    <g transform="matrix(1, 0, 0, 1, -9, -9)" filter="url(#Ellipse_90)">
+      <circle id="Ellipse_90-2" data-name="Ellipse 90" cx="30" cy="30" r="30" transform="translate(9 9)" fill="#fff"/>
+    </g>
+    <g id="Group_1542" data-name="Group 1542" transform="translate(8 8.041)">
+      <g id="Group_1543" data-name="Group 1543">
+        <path id="Path_968" data-name="Path 968" d="M24.627.1c-.336-.04-.674-.071-1.015-.1a1.616,1.616,0,0,0-.017,3.149c.152.013.3.024.457.041a18.857,18.857,0,1,1-4.1,0c.152-.016.3-.028.456-.041A1.616,1.616,0,0,0,20.388,0c-.341.025-.679.057-1.015.1a22,22,0,1,0,5.255,0" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>

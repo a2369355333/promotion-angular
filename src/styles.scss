@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'tailwindcss/base' as *;
+@use 'tailwindcss/components' as *;
+@use 'tailwindcss/utilities' as *;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Arial, "Meiryo UI", "微軟正黑體", sans-serif;
+
+}
+
+//loading
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  //animation: spin 1s linear infinite;
+  animation: spin 1s cubic-bezier(0.1, 0, 0.3, 1) infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.loading_icon {
+  content: url("./assets/icons/png/icon_pageLoading.png");
+}
+
+.loading_icon_big {
+  content: url("./assets/icons/png/icon_pageLoading_big.png");
+}
+
+//scroll bar
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-bg) !important;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: var(--scrollbar-corner-bg) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-bg-hover) !important;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-bg-active) !important;
+}
+
+///////////////////////////////
+//////////theme color//////////
+///////////////////////////////
+
+:root {
+  //theme-light
+
+  //content page
+  --app_bgcolor: rgba(255, 255, 255, 0.5);
+  --app_bgcolor_hover: rgba(255, 255, 255, 1);
+  --app_provcolor: rgba(107, 107, 107, 1); //#6B6B6B
+  --app_namecolor: rgba(107, 107, 107, 1); //#6B6B6B
+  --app_descolor: rgba(28, 28, 28, 1); //#1C1C1C
+  --btn_bgcolor: rgba(255, 255, 255, 0.6);
+  --btn_bgcolor_hover: rgba(255, 255, 255, 1);
+  --btn_color: rgba(77, 159, 117, 1); //#4D9F75
+  --icon_bgcolor: rgba(255, 255, 255, 1); //#FFFFFF
+  //detail page
+  --template_bgcolor: rgba(237, 237, 236, 0.5);
+  --detail_type1_textcolor: rgba(0, 0, 0, 1); //#000000
+  --detail_type2_textcolor: rgba(107, 107, 107, 1); //#6B6B6B
+  --detail_type3_textcolor: rgba(28, 28, 28, 1); //#1C1C1C
+  //scroll bar
+  --scrollbar-thumb-bg: #4d9f754d;
+  --scrollbar-thumb-bg-hover: #4d9f75b3;
+  --scrollbar-thumb-bg-active: #4d9f75b3;
+  --scrollbar-corner-bg: #000000cc;
+}
+
+.theme-dark {
+  //content page
+  --app_bgcolor: rgba(255, 255, 255, 0.08);
+  --app_bgcolor_hover: rgba(255, 255, 255, 0.15);
+  --app_provcolor: rgba(192, 196, 195, 1); //#C0C4C3
+  --app_namecolor: rgba(192, 196, 195, 1); //#C0C4C3
+  --app_descolor: rgba(255, 255, 255, 1); //#FFFFFF
+  --btn_bgcolor: rgba(255, 255, 255, 0.04);
+  --btn_bgcolor_hover: rgba(255, 255, 255, 0.15);
+  --btn_color: rgba(77, 159, 117, 1);
+  --icon_bgcolor: rgba(255, 255, 255, 0.15);
+  //detail page
+  --template_bgcolor: rgba(237, 237, 236, 0.1);
+  --detail_type1_textcolor: rgba(255, 255, 255, 1); //#FFFFFF
+  --detail_type2_textcolor: rgba(192, 196, 195, 1); //#C0C4C3
+  --detail_type3_textcolor: rgba(231, 231, 231, 1); //#E7E7E7
+  //scroll bar
+  --scrollbar-thumb-bg: #ffffff4d;
+  --scrollbar-thumb-bg-hover: #ffffff80;
+  --scrollbar-thumb-bg-active: #ffffffb3;
+  --scrollbar-corner-bg: #000000cc;
+}
