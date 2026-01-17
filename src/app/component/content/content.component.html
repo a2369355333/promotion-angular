@@ -1,329 +1,375 @@
 <div *ngIf="!isLoading.sectionA && !isLoading.sectionB && !isLoading.sectionC" class="pb-10 pt-7">
-  <div class="w-[468px] custom-md:w-[98%] custom-lg:w-[1136px] h-fit mx-auto"
-      *ngIf="!isShowingDetailA && !isShowingDetailC">
-      <!-- ZONE A -->
-      <div class="mb-5">
-          <span class="detail_type3_text text-base font-semibold inline-block ml-[66px] md-title custom-lg:ml-4 mb-3">
-              Promotion
-          </span>
-          <div #sectionA class="w-full h-[360px] flex justify-between relative">
-            <div *ngFor="let item of displayCarousel; let i = index" class="flex rounded-[20px] overflow-hidden">
-                <div class="w-full h-full" (transitionend)="onTransitionEnd(i)" [style.transition]="transition"
-                [ngClass]="{
-                    'w-[468px] px-0 block custom-md:px-4 custom-lg:w-[832px] opacity-100': item.visibleStatus === 0,
-                    'w-0 custom-lg:w-[152px] opacity-100 hidden custom-md:block mx-0': item.visibleStatus === 1,
-                    'w-auto max-w-0 opacity-0 mx-0': item.visibleStatus === 2,
-                    'md-second-width': item.visibleStatus === 1,
-                    'md-major-width': item.visibleStatus === 0
-                }">
-                    <div class="relative w-full h-full rounded-[20px]" (click)="openDetailA(item)" (keydown.enter)="openDetailA(item)" [attr.tabindex]="item.visibleStatus === 0 ? '0' : '-1'">
-                        <img  class="w-full h-full rounded-[20px] object-cover" src="{{item?.image}}">
-                        <div *ngIf="item.visibleStatus === 0" class="absolute left-[70px] custom-md:left-[40px] top-0 bottom-0 flex flex-col text-white"
-                        [ngClass]="{'top-[88px]': (item.provider && item.name && item.icon), 'justify-center': (!item.provider || !item.name || !item.icon)}">
-                            <img *ngIf="item?.icon" class="icon-A w-[44px] h-[44px] object-cover" src="{{item?.icon}}">
-                            <div class="mt-4 text-xs leading-[20px] font-semibold text-left">{{item?.provider}}</div>
-                            <div class="mt-1 text-xl leading-[20px] font-bold text-left">{{item?.name}}</div>
+    <div class="w-[468px] custom-md:w-[98%] custom-lg:w-[1136px] h-fit mx-auto"
+        *ngIf="!isShowingDetailA && !isShowingDetailC">
+        <!-- ZONE A -->
+        <div class="mb-5">
+            <span class="detail_type3_text text-base font-semibold inline-block ml-[66px] md-title custom-lg:ml-4 mb-3">
+                Promotion
+            </span>
+            <div #sectionA class="w-full h-[360px] flex relative overflow-hidden">
+                <div *ngFor="let item of displayCarousel; let i = index" (transitionend)="onTransitionEnd(i)"
+                    [style.transition]="transition" [ngClass]="{
+                'w-[468px] px-0 block custom-md:px-4 custom-lg:w-[832px] opacity-100': item.visibleStatus === 0,
+                'w-0 custom-lg:w-[152px] opacity-100 hidden custom-md:block mx-0': item.visibleStatus === 1,
+                'w-auto max-w-0 opacity-0 mx-0': item.visibleStatus === 2,
+                'md-second-width': item.visibleStatus === 1,
+                'md-major-width': item.visibleStatus === 0
+             }" class="rounded-[20px] overflow-hidden flex-shrink-0">
+
+                    <div class="relative w-full h-full rounded-[20px]" (click)="openDetailA(item)"
+                        (keydown.enter)="openDetailA(item)" [attr.tabindex]="item.visibleStatus === 0 ? '0' : '-1'">
+
+                        <img class="w-full h-full rounded-[20px] object-cover" [src]="item?.image">
+
+                        <div *ngIf="item.visibleStatus === 0"
+                            class="absolute left-[70px] custom-md:left-[40px] top-0 bottom-0 flex flex-col text-white"
+                            [ngClass]="{'top-[88px]': (item.provider && item.name && item.icon), 'justify-center': (!item.provider || !item.name || !item.icon)}">
+
+                            <img *ngIf="item?.icon" class="icon-A w-[44px] h-[44px] object-cover" [src]="item?.icon">
+
+                            <div class="mt-4 text-xs leading-[20px] font-semibold text-left">
+                                {{item?.provider}}
+                            </div>
+
+                            <div class="mt-1 text-xl leading-[20px] font-bold text-left">
+                                {{item?.name}}
+                            </div>
+
                             <div class="des_three_line w-[336px] mt-2 text-left text-wrap"
-                            [ngClass]="{'text-base leading-[20px]': (item.provider || item.name || item.icon), 'text-xl leading-[24px] font-semibold': (!item.provider && !item.name && !item.icon)}">
+                                [ngClass]="{'text-base leading-[20px]': (item.provider || item.name || item.icon), 'text-xl leading-[24px] font-semibold': (!item.provider && !item.name && !item.icon)}">
                                 {{item.description}}
                             </div>
                         </div>
-                        <div class="w-full h-full absolute left-0 top-0" [style.transition]="transition" (transitionstart)="isAnimating=true" (transitionend)="isAnimating=false"
-                        [ngClass]="{'opacity-0 cursor-pointer':item.visibleStatus == 0, 'opacity-40':item.visibleStatus == 1, 'opacity-50':item.visibleStatus == 2, 'pointer-events-none':isAnimating}">
+
+                        <!-- mask -->
+                        <div class="w-full h-full absolute left-0 top-0 rounded-[20px]"
+                            [style.transition]="transition" (transitionstart)="isAnimating=true"
+                            (transitionend)="isAnimating=false" [ngClass]="{
+                        'opacity-0 cursor-pointer': item.visibleStatus == 0, 
+                        'opacity-40': item.visibleStatus == 1, 
+                        'opacity-50': item.visibleStatus == 2, 
+                        'pointer-events-none': isAnimating
+                     }">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- left arrow -->
+                <div class="absolute top-0 bottom-0 left-3 md-left-btn custom-lg:left-[10.6%] flex items-center z-10">
+                    <button class="opacity-70 hover:opacity-100 active:opacity-100 transition-opacity"
+                        (click)="onCarousel(0)">
+                        <mat-icon class="!w-5 !h-5" svgIcon="icon:explore_left"></mat-icon>
+                    </button>
+                </div>
+
+                <!-- right arrow -->
+                <div
+                    class="absolute top-0 bottom-0 right-3 md-right-btn custom-lg:right-[10.6%] flex items-center z-10">
+                    <button class="w-5 h-5 opacity-70 hover:opacity-100 active:opacity-100" (click)="onCarousel(1)">
+                        <mat-icon class="!w-5 !h-5" svgIcon="icon:explore_right"></mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- pagination -->
+            <div class="flex justify-center w-full gap-2 mt-2">
+                <button *ngFor="let c of carousel; let i = index"
+                    [ngClass]="i === currentIdx ? 'pointer-events-none bg-[#4d9f75]':'bg-white'"
+                    class="h-3 w-3 rounded-full border-[1px] border-[#4d9f75]" (click)="onCarousel(i+3, true)"
+                    [attr.aria-label]="'page' + (i + 1) + ' ' + (i + 1) + 'of' + carousel.length">
+                </button>
+            </div>
+        </div>
+        <!-- ZONE B -->
+        <div *ngIf="this.sectionB.length != 0" class="w-[368px] custom-md:w-[752px] custom-lg:w-[1136px] mx-auto mb-10">
+            <span class="name_color text-lg font-semibold inline-block ml-4 mb-4">
+                Recommend Apps
+            </span>
+            <div class="w-full h-full">
+                <div class="grid grid-cols-1 custom-md:grid-cols-2 custom-lg:grid-cols-3 gap-4">
+                    <div *ngFor="let item of sectionB.slice(0, showAppsCount)">
+                        <div class="app flex cursor-pointer" (click)="openApp(item)" (keydown.enter)="openApp(item)"
+                            tabindex="0">
+                            <img class="icon-B w-[52px] h-[52px] my-auto ml-5 object-cover" src="{{item?.icon}}"
+                                tabindex="-1">
+                            <div class="pl-4 pr-[14px]">
+                                <div class="prov_color mt-5 mb-1 text-xs leading-[16px]">{{item.provider}}</div>
+                                <div class="name_color mb-2 text-base leading-[21px] font-bold">{{item.name}}</div>
+                                <div class="des_two_line des_color text-sm leading-[19px] text-left">
+                                    {{item.description}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="show-btn mt-4" *ngIf="this.showAppsCount < this.sectionB.length"
+                    (click)="showMoreApps()">
+                    <span class="text-xs font-semibold">
+                        SHOW_MORE
+                    </span>
+                </button>
+            </div>
+        </div>
+        <!-- ZONE C -->
+        <div *ngIf="this.sectionC.length != 0" class="w-[368px] custom-md:w-[752px] custom-lg:w-[1136px] mx-auto">
+            <span class="name_color text-lg font-semibold inline-block ml-4 mb-4">
+                Hight Features
+            </span>
+            <div class=" w-full h-full">
+                <div class="feature w-full flex flex-col custom-md:flex-row-reverse cursor-pointer"
+                    (click)="openDetailC(sectionC[0])" (keydown.enter)="openDetailC(sectionC[0])" tabindex="0">
+                    <div class="w-full h-[150px] custom-md:h-full custom-md:w-1/2">
+                        <img class="w-full h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none"
+                            src="{{sectionC[0]?.image}}">
+                    </div>
+                    <div class="w-full h-full custom-md:w-1/2 flex justify-center items-center">
+                        <span
+                            class="des_three_line des_color w-[336px] break-words text-base leading-[21px] custom-md:text-xl custom-md:leading-6 text-left">
+                            {{sectionC[0]?.description}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="sectionC.slice(1, showDetailsCount).length >= 3"
+                    class="grid grid-cols-1 custom-lg:grid-cols-3 gap-4 mt-4">
+                    <div *ngFor="let item of sectionC.slice(1, showDetailsCount)">
+                        <div class="feature text-center cursor-pointer flex flex-col custom-md:flex-row-reverse custom-lg:flex-col"
+                            (click)="openDetailC(item)" (keydown.enter)="openDetailC(item)" tabindex="0">
+                            <div
+                                class="w-full custom-md:w-1/2 custom-lg:w-full h-[150px] custom-md:h-full custom-lg:h-[150px]">
+                                <img class="h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none custom-lg:rounded-t-[20px] custom-lg:rounded-br-none"
+                                    src="{{item?.image}}">
+                            </div>
+                            <div
+                                class="w-full custom-md:w-1/2 custom-lg:w-full h-full text-base leading-[21px] custom-md:text-xl custom-md:leading-6 custom-lg:text-base custom-lg:leading-[21px] text-left flex justify-center items-center">
+                                <span
+                                    class="des_three_line des_color w-[336px] break-words">{{item?.description}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="sectionC.slice(1, showDetailsCount).length < 3" class="grid grid-cols-1 gap-4 mt-4">
+                    <div *ngFor="let item of sectionC.slice(1, showDetailsCount)">
+                        <div class="feature text-center cursor-pointer flex flex-col custom-md:flex-row-reverse"
+                            (click)="openDetailC(item)" (keydown.enter)="openDetailC(item)" tabindex="0">
+                            <div class="w-full custom-md:w-1/2w-1/2 h-[150px] custom-md:h-full">
+                                <img class="w-full h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none"
+                                    src="{{item?.image}}">
+                            </div>
+                            <div
+                                class="w-full custom-md:w-1/2w-1/2 h-full text-base leading-[21px] custom-md:text-xl custom-md:leading-6 text-left flex justify-center items-center">
+                                <span
+                                    class="des_three_line des_color w-[336px] break-words">{{item?.description}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="show-btn mt-4" *ngIf="this.showDetailsCount < this.sectionC.length"
+                    (click)="showMoreDetails()">
+                    <span class="text-xs font-semibold">
+                        SHOW_MORE
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Detail A -->
+    <div *ngIf="isShowingDetailA" class="w-[468px] custom-sm:w-[93.6%] custom-md3:w-[800px] h-fit mx-auto">
+        <div class="flex items-center ml-4">
+            <button class="flex justify-center items-center !w-[20px] !h-[20px]" (click)="backToContentPage()"
+                (mouseenter)="backBtnHoverIdx=0" (mouseleave)="backBtnHoverIdx=-1">
+                <mat-icon svgIcon="{{(backBtnHoverIdx==0) ? 'icon:back_hover' : 'icon:back'}}"></mat-icon>
+            </button>
+            <span class="detail_type3_text text-base font-semibold inline-block ml-3">
+                Lobby
+            </span>
+        </div>
+        <div class="detail-container w-full h-auto mt-3 p-10 grid grid-cols-1 gap-10" tabindex="0">
+            <div>
+                <span class="detail_type1_text text-2xl leading-9 font-semibold text-left">
+                    {{selectedDetailA.title}}
+                </span>
+                <div class="w-full mt-5 flex justify-center">
+                    <img class="w-fit rounded-[10px] object-cover" src="{{selectedDetailA?.image}}">
+                </div>
+            </div>
+            <ng-container *ngFor="let item of selectedDetailAContent">
+                <ng-container *ngIf="item.template === 'smallTitle'">
+                    <ng-container *ngTemplateOutlet="smallTitle; context: { $implicit: item }"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="item.template === 'text'">
+                    <ng-container *ngTemplateOutlet="text; context: { $implicit: item }"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="item.template === 'image'">
+                    <ng-container *ngTemplateOutlet="image; context: { $implicit: item }"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="item.template === 'leftImageAndRightText'">
+                    <ng-container
+                        *ngTemplateOutlet="leftImageAndRightText; context: { $implicit: item }"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="item.template === 'rightImageAndLeftText'">
+                    <ng-container
+                        *ngTemplateOutlet="rightImageAndLeftText; context: { $implicit: item }"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="item.template === 'video'">
+                    <ng-container *ngTemplateOutlet="video; context: { $implicit: item }"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="item.template === 'hyperlink'">
+                    <ng-container *ngTemplateOutlet="hyperlinkA; context: { $implicit: item }"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="item.template === 'conditionalHyperlink'">
+                    <ng-container *ngTemplateOutlet="hyperlinkA; context: { $implicit: item }"></ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+
+    <!-- Detail C -->
+    <div *ngIf="isShowingDetailC" class="mx-auto">
+        <div class="w-[468px] custom-sm:w-[93.6%] custom-md3:w-[800px] mx-auto">
+            <div>
+                <div class="flex items-center ml-4">
+                    <button class="flex justify-center items-center !w-[20px] !h-[20px]" (click)="backToContentPage()"
+                        (mouseenter)="backBtnHoverIdx=0" (mouseleave)="backBtnHoverIdx=-1">
+                        <mat-icon svgIcon="{{(backBtnHoverIdx==0) ? 'icon:back_hover' : 'icon:back'}}"></mat-icon>
+                    </button>
+                    <span class="detail_type3_text text-base font-semibold inline-block ml-3">
+                        Lobby
+                    </span>
+                </div>
+                <div *ngIf="selectedDetailC?.type == 'inline'"
+                    class="detail-container w-full h-auto mt-3 p-10 grid grid-cols-1 gap-10" tabindex="0">
+                    <div>
+                        <span class="detail_type1_text text-2xl leading-9 font-semibold text-left">
+                            {{selectedDetailC.title}}
+                        </span>
+                        <div class="w-full mt-5 flex justify-center">
+                            <img class="w-fit rounded-[10px] object-cover" src="{{selectedSectionC?.image}}">
+                        </div>
+                    </div>
+                    <ng-container *ngFor="let item of selectedDetailCContent">
+                        <ng-container *ngIf="item.template === 'smallTitle'">
+                            <ng-container *ngTemplateOutlet="smallTitle; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.template === 'text'">
+                            <ng-container *ngTemplateOutlet="text; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.template === 'image'">
+                            <ng-container *ngTemplateOutlet="image; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.template === 'leftImageAndRightText'">
+                            <ng-container
+                                *ngTemplateOutlet="leftImageAndRightText; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.template === 'rightImageAndLeftText'">
+                            <ng-container
+                                *ngTemplateOutlet="rightImageAndLeftText; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.template === 'video'">
+                            <ng-container *ngTemplateOutlet="video; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.template === 'hyperlink'">
+                            <ng-container *ngTemplateOutlet="hyperlinkC; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.template === 'conditionalHyperlink'">
+                            <ng-container *ngTemplateOutlet="hyperlinkC; context: { $implicit: item }"></ng-container>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <div *ngIf="selectedDetailC?.type == 'html'">
+                    <iframe class="w-full h-[400px] mt-3" [src]="selectedDetailCHtmlUrl"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="w-full" *ngIf="restDetailC.length > 0">
+            <div class="mt-10 mb-3 mx-auto flex justify-center items-center">
+                <span class="name_color text-lg font-semibold">
+                    Feature
+                </span>
+            </div>
+            <div class="grid grid-cols-1 gap-4 custom-sm:flex custom-sm:flex-wrap custom-sm:justify-center">
+                <div *ngFor="let item of restDetailC; let i = index">
+                    <div class="feature w-[368px] mx-auto rounded-[20px] text-center cursor-pointer flex flex-col"
+                        (click)="showDetailC(item, i)" (keydown.enter)="showDetailC(item, i)" tabindex="0">
+                        <div class="h-[150px]">
+                            <img class="object-cover w-full h-full rounded-t-[20px]" src="{{item?.image}}">
+                        </div>
+                        <div class="h-[96px] flex justify-center items-center">
+                            <span
+                                class="des_three_line des_color  w-[336px] break-words text-base leading-[21px] text-left">
+                                {{item?.description}}
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="absolute top-0 bottom-0 left-3 md-left-btn custom-lg:left-[10.6%] flex items-center">
-                <button class="opacity-70 hover:opacity-100 active:opacity-100 transition-opacity" (click)="onCarousel(0)">
-                    <mat-icon class="!w-5 !h-5" svgIcon="icon:explore_left"></mat-icon>
-                </button>
-            </div>
-            <div class="absolute top-0 bottom-0 right-3 md-right-btn custom-lg:right-[10.6%] flex items-center">
-                <button class="w-5 h-5 opacity-70 hover:opacity-100 active:opacity-100" (click)="onCarousel(1)">
-                    <mat-icon class="!w-5 !h-5" svgIcon="icon:explore_right"></mat-icon>
-                </button>
-            </div>
         </div>
-          <div  class="flex justify-center w-full gap-2 mt-2">
-              <button *ngFor="let c of carousel; let i = index"
-                  [ngClass]="i === currentIdx ? 'pointer-events-none bg-[#4d9f75]':'bg-white'"
-                  class="h-3 w-3 rounded-full border-[1px] border-[#4d9f75]" (click)="onCarousel(i+3, true)"
-                  [attr.aria-label]="'page' + (i + 1) + ' ' + (i + 1) + 'of' + carousel.length">
-              </button>
-          </div>
-      </div>
-      <!-- ZONE B -->
-      <div *ngIf="this.sectionB.length != 0" class="w-[368px] custom-md:w-[752px] custom-lg:w-[1136px] mx-auto mb-10">
-          <span class="name_color text-lg font-semibold inline-block ml-4 mb-4">
-              Recommend Apps
-          </span>
-          <div class="w-full h-full">
-              <div class="grid grid-cols-1 custom-md:grid-cols-2 custom-lg:grid-cols-3 gap-4">
-                  <div *ngFor="let item of sectionB.slice(0, showAppsCount)">
-                      <div class="app flex cursor-pointer" (click)="openApp(item)" (keydown.enter)="openApp(item)" tabindex="0">
-                          <img class="icon-B w-[52px] h-[52px] my-auto ml-5 object-cover" src="{{item?.icon}}" tabindex="-1">
-                          <div class="pl-4 pr-[14px]">
-                              <div class="prov_color mt-5 mb-1 text-xs leading-[16px]">{{item.provider}}</div>
-                              <div class="name_color mb-2 text-base leading-[21px] font-bold">{{item.name}}</div>
-                              <div class="des_two_line des_color text-sm leading-[19px] text-left">{{item.description}}</div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <button class="show-btn mt-4" *ngIf="this.showAppsCount < this.sectionB.length"
-                  (click)="showMoreApps()">
-                  <span class="text-xs font-semibold">
-                      SHOW_MORE
-                  </span>
-              </button>
-          </div>
-      </div>
-      <!-- ZONE C -->
-      <div *ngIf="this.sectionC.length != 0" class="w-[368px] custom-md:w-[752px] custom-lg:w-[1136px] mx-auto">
-          <span class="name_color text-lg font-semibold inline-block ml-4 mb-4">
-            Hight Features
-          </span>
-          <div class=" w-full h-full">
-              <div class="feature w-full flex flex-col custom-md:flex-row-reverse cursor-pointer" (click)="openDetailC(sectionC[0])" (keydown.enter)="openDetailC(sectionC[0])" tabindex="0">
-                  <div class="w-full h-[150px] custom-md:h-full custom-md:w-1/2">
-                      <img class="w-full h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none" src="{{sectionC[0]?.image}}">
-                  </div>
-                  <div class="w-full h-full custom-md:w-1/2 flex justify-center items-center">
-                      <span class="des_three_line des_color w-[336px] break-words text-base leading-[21px] custom-md:text-xl custom-md:leading-6 text-left">
-                          {{sectionC[0]?.description}}
-                      </span>
-                  </div>
-              </div>
-              <div *ngIf="sectionC.slice(1, showDetailsCount).length >= 3"
-                  class="grid grid-cols-1 custom-lg:grid-cols-3 gap-4 mt-4">
-                  <div *ngFor="let item of sectionC.slice(1, showDetailsCount)">
-                      <div class="feature text-center cursor-pointer flex flex-col custom-md:flex-row-reverse custom-lg:flex-col"
-                          (click)="openDetailC(item)" (keydown.enter)="openDetailC(item)" tabindex="0">
-                          <div class="w-full custom-md:w-1/2 custom-lg:w-full h-[150px] custom-md:h-full custom-lg:h-[150px]">
-                              <img class="h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none custom-lg:rounded-t-[20px] custom-lg:rounded-br-none" src="{{item?.image}}">
-                          </div>
-                          <div class="w-full custom-md:w-1/2 custom-lg:w-full h-full text-base leading-[21px] custom-md:text-xl custom-md:leading-6 custom-lg:text-base custom-lg:leading-[21px] text-left flex justify-center items-center">
-                              <span class="des_three_line des_color w-[336px] break-words">{{item?.description}}</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div *ngIf="sectionC.slice(1, showDetailsCount).length < 3" class="grid grid-cols-1 gap-4 mt-4">
-                  <div *ngFor="let item of sectionC.slice(1, showDetailsCount)">
-                      <div class="feature text-center cursor-pointer flex flex-col custom-md:flex-row-reverse" (click)="openDetailC(item)" (keydown.enter)="openDetailC(item)" tabindex="0">
-                          <div class="w-full custom-md:w-1/2w-1/2 h-[150px] custom-md:h-full">
-                              <img class="w-full h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none" src="{{item?.image}}">
-                          </div>
-                          <div class="w-full custom-md:w-1/2w-1/2 h-full text-base leading-[21px] custom-md:text-xl custom-md:leading-6 text-left flex justify-center items-center">
-                              <span class="des_three_line des_color w-[336px] break-words">{{item?.description}}</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <button class="show-btn mt-4" *ngIf="this.showDetailsCount < this.sectionC.length"
-                  (click)="showMoreDetails()">
-                  <span class="text-xs font-semibold">
-                    SHOW_MORE
-                  </span>
-              </button>
-          </div>
-      </div>
-  </div>
-
-
-  <!-- Detail A -->
-  <div *ngIf="isShowingDetailA" class="w-[468px] custom-sm:w-[93.6%] custom-md3:w-[800px] h-fit mx-auto">
-      <div class="flex items-center ml-4">
-          <button class="flex justify-center items-center !w-[20px] !h-[20px]"
-          (click)="backToContentPage()" (mouseenter)="backBtnHoverIdx=0" (mouseleave)="backBtnHoverIdx=-1">
-              <mat-icon svgIcon="{{(backBtnHoverIdx==0) ? 'icon:back_hover' : 'icon:back'}}" ></mat-icon>
-          </button>
-          <span class="detail_type3_text text-base font-semibold inline-block ml-3">
-            Lobby
-          </span>
-      </div>
-      <div class="detail-container w-full h-auto mt-3 p-10 grid grid-cols-1 gap-10" tabindex="0">
-          <div>
-              <span class="detail_type1_text text-2xl leading-9 font-semibold text-left">
-                  {{selectedDetailA.title}}
-              </span>
-              <div class="w-full mt-5 flex justify-center">
-                  <img class="w-fit rounded-[10px] object-cover"
-                      src="{{selectedDetailA?.image}}">
-              </div>
-          </div>
-          <ng-container *ngFor="let item of selectedDetailAContent">
-              <ng-container *ngIf="item.template === 'smallTitle'">
-                  <ng-container *ngTemplateOutlet="smallTitle; context: { $implicit: item }"></ng-container>
-              </ng-container>
-              <ng-container *ngIf="item.template === 'text'">
-                  <ng-container *ngTemplateOutlet="text; context: { $implicit: item }"></ng-container>
-              </ng-container>
-              <ng-container *ngIf="item.template === 'image'">
-                  <ng-container *ngTemplateOutlet="image; context: { $implicit: item }"></ng-container>
-              </ng-container>
-              <ng-container *ngIf="item.template === 'leftImageAndRightText'">
-                  <ng-container *ngTemplateOutlet="leftImageAndRightText; context: { $implicit: item }"></ng-container>
-              </ng-container>
-              <ng-container *ngIf="item.template === 'rightImageAndLeftText'">
-                  <ng-container *ngTemplateOutlet="rightImageAndLeftText; context: { $implicit: item }"></ng-container>
-              </ng-container>
-              <ng-container *ngIf="item.template === 'video'">
-                  <ng-container *ngTemplateOutlet="video; context: { $implicit: item }"></ng-container>
-              </ng-container>
-              <ng-container *ngIf="item.template === 'hyperlink'">
-                  <ng-container *ngTemplateOutlet="hyperlinkA; context: { $implicit: item }"></ng-container>
-              </ng-container>
-              <ng-container *ngIf="item.template === 'conditionalHyperlink'">
-                <ng-container *ngTemplateOutlet="hyperlinkA; context: { $implicit: item }"></ng-container>
-              </ng-container>
-          </ng-container>
-      </div>
-  </div>
-
-  <!-- Detail C -->
-  <div *ngIf="isShowingDetailC" class="mx-auto">
-      <div class="w-[468px] custom-sm:w-[93.6%] custom-md3:w-[800px] mx-auto">
-          <div>
-              <div class="flex items-center ml-4">
-                  <button class="flex justify-center items-center !w-[20px] !h-[20px]"
-                  (click)="backToContentPage()" (mouseenter)="backBtnHoverIdx=0" (mouseleave)="backBtnHoverIdx=-1">
-                    <mat-icon svgIcon="{{(backBtnHoverIdx==0) ? 'icon:back_hover' : 'icon:back'}}" ></mat-icon>
-                  </button>
-                  <span class="detail_type3_text text-base font-semibold inline-block ml-3">
-                    Lobby
-                  </span>
-              </div>
-              <div *ngIf="selectedDetailC?.type == 'inline'" class="detail-container w-full h-auto mt-3 p-10 grid grid-cols-1 gap-10" tabindex="0">
-                  <div>
-                      <span class="detail_type1_text text-2xl leading-9 font-semibold text-left">
-                          {{selectedDetailC.title}}
-                      </span>
-                      <div class="w-full mt-5 flex justify-center">
-                          <img class="w-fit rounded-[10px] object-cover"
-                              src="{{selectedSectionC?.image}}">
-                      </div>
-                  </div>
-                  <ng-container *ngFor="let item of selectedDetailCContent">
-                      <ng-container *ngIf="item.template === 'smallTitle'">
-                          <ng-container *ngTemplateOutlet="smallTitle; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="item.template === 'text'">
-                          <ng-container *ngTemplateOutlet="text; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="item.template === 'image'">
-                          <ng-container *ngTemplateOutlet="image; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="item.template === 'leftImageAndRightText'">
-                          <ng-container *ngTemplateOutlet="leftImageAndRightText; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="item.template === 'rightImageAndLeftText'">
-                          <ng-container *ngTemplateOutlet="rightImageAndLeftText; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="item.template === 'video'">
-                          <ng-container *ngTemplateOutlet="video; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="item.template === 'hyperlink'">
-                          <ng-container *ngTemplateOutlet="hyperlinkC; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="item.template === 'conditionalHyperlink'">
-                          <ng-container *ngTemplateOutlet="hyperlinkC; context: { $implicit: item }"></ng-container>
-                      </ng-container>
-                  </ng-container>
-              </div>
-              <div *ngIf="selectedDetailC?.type == 'html'">
-                  <iframe class="w-full h-[400px] mt-3" [src]="selectedDetailCHtmlUrl"></iframe>
-              </div>
-          </div>
-      </div>
-      <div class="w-full" *ngIf="restDetailC.length > 0">
-          <div class="mt-10 mb-3 mx-auto flex justify-center items-center">
-              <span class="name_color text-lg font-semibold">
-                  Feature
-              </span>
-          </div>
-          <div class="grid grid-cols-1 gap-4 custom-sm:flex custom-sm:flex-wrap custom-sm:justify-center">
-              <div *ngFor="let item of restDetailC; let i = index">
-                  <div class="feature w-[368px] mx-auto rounded-[20px] text-center cursor-pointer flex flex-col"
-                      (click)="showDetailC(item, i)" (keydown.enter)="showDetailC(item, i)" tabindex="0">
-                      <div class="h-[150px]">
-                          <img class="object-cover w-full h-full rounded-t-[20px]" src="{{item?.image}}">
-                      </div>
-                      <div class="h-[96px] flex justify-center items-center">
-                          <span class="des_three_line des_color  w-[336px] break-words text-base leading-[21px] text-left">
-                              {{item?.description}}
-                          </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    </div>
 </div>
 
 <ng-template #smallTitle let-item>
-  <span class="detail_type1_text text-lg leading-6 font-semibold text-left inline-block -mb-4">
-      {{item.title}}
-  </span>
+    <span class="detail_type1_text text-lg leading-6 font-semibold text-left inline-block -mb-4">
+        {{item.title}}
+    </span>
 </ng-template>
 <ng-template #text let-item>
-  <span class="detail_type2_text text-base leading-6 text-left">
-      {{item.text}}
-  </span>
+    <span class="detail_type2_text text-base leading-6 text-left">
+        {{item.text}}
+    </span>
 </ng-template>
 <ng-template #image let-item>
-  <div class="w-full flex justify-center">
-      <img class="w-fit h-[216px] custom-lg:h-[400px] rounded-[10px] object-cover" src="{{item?.image}}">
-  </div>
+    <div class="w-full flex justify-center">
+        <img class="w-fit h-[216px] custom-lg:h-[400px] rounded-[10px] object-cover" src="{{item?.image}}">
+    </div>
 </ng-template>
 <ng-template #leftImageAndRightText let-item>
-  <div class="detail-template-container h-auto custom-md2:h-[280px] flex flex-col custom-md2:flex-row">
-      <div class="w-full custom-md2:w-1/2">
-          <img class="w-full h-[280px] rounded-t-[10px] custom-md2:rounded-l-[10px] custom-md2:rounded-tr-none object-cover"
-              src="{{item?.image}}">
-      </div>
-      <div
-          class="w-full h-auto custom-md2:w-1/2 flex justify-center items-center px-[34px] custom-md2:px-5 py-10 custom-md2:py-0">
-          <span class="detail_type3_text text-base leading-[22px] font-semibold custom-sm:leading-6 text-left">
-              {{item.text}}
-          </span>
-      </div>
-  </div>
+    <div class="detail-template-container h-auto custom-md2:h-[280px] flex flex-col custom-md2:flex-row">
+        <div class="w-full custom-md2:w-1/2">
+            <img class="w-full h-[280px] rounded-t-[10px] custom-md2:rounded-l-[10px] custom-md2:rounded-tr-none object-cover"
+                src="{{item?.image}}">
+        </div>
+        <div
+            class="w-full h-auto custom-md2:w-1/2 flex justify-center items-center px-[34px] custom-md2:px-5 py-10 custom-md2:py-0">
+            <span class="detail_type3_text text-base leading-[22px] font-semibold custom-sm:leading-6 text-left">
+                {{item.text}}
+            </span>
+        </div>
+    </div>
 </ng-template>
 <ng-template #rightImageAndLeftText let-item>
-  <div class="detail-template-container h-auto custom-md2:h-[280px] flex flex-col custom-md2:flex-row-reverse">
-      <div class="w-full custom-md2:w-1/2">
-          <img class="w-full h-[280px] rounded-t-[10px] custom-md2:rounded-r-[10px] custom-md2:rounded-tl-none object-cover"
-              src="{{item?.image}}">
-      </div>
-      <div
-          class="w-full h-auto custom-md2:w-1/2 flex justify-center items-center px-[34px] custom-md2:px-5 py-10 custom-md2:py-0">
-          <span class="detail_type3_text text-base leading-[22px] font-semibold custom-sm:leading-6 text-left">
-              {{item.text}}
-          </span>
-      </div>
-  </div>
+    <div class="detail-template-container h-auto custom-md2:h-[280px] flex flex-col custom-md2:flex-row-reverse">
+        <div class="w-full custom-md2:w-1/2">
+            <img class="w-full h-[280px] rounded-t-[10px] custom-md2:rounded-r-[10px] custom-md2:rounded-tl-none object-cover"
+                src="{{item?.image}}">
+        </div>
+        <div
+            class="w-full h-auto custom-md2:w-1/2 flex justify-center items-center px-[34px] custom-md2:px-5 py-10 custom-md2:py-0">
+            <span class="detail_type3_text text-base leading-[22px] font-semibold custom-sm:leading-6 text-left">
+                {{item.text}}
+            </span>
+        </div>
+    </div>
 </ng-template>
 <ng-template #video let-item>
-  <iframe class="w-full" height="315" [src]="videoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-  </iframe>
+    <iframe class="w-full" height="315" [src]="videoUrl" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
 </ng-template>
 <ng-template #hyperlinkA let-item>
-  <div>
-      <button class="hyperlink-btn" (click)="openBannerContent()">
-          <span class="font-semibold">
-              {{item.text}}
-          </span>
-      </button>
-  </div>
+    <div>
+        <button class="hyperlink-btn" (click)="openBannerContent()">
+            <span class="font-semibold">
+                {{item.text}}
+            </span>
+        </button>
+    </div>
 </ng-template>
 <ng-template #hyperlinkC let-item>
-  <div>
-      <button class="hyperlink-btn" (click)="openFeatureContent()">
-          <span class="font-semibold">
-              {{item.text}}
-          </span>
-      </button>
-  </div>
+    <div>
+        <button class="hyperlink-btn" (click)="openFeatureContent()">
+            <span class="font-semibold">
+                {{item.text}}
+            </span>
+        </button>
+    </div>
 </ng-template>
