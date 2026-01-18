@@ -6,17 +6,11 @@
 yarn 
 ```
 
-## Usage
+## Getting Started
 
 ```sh
 yarn start
 ```
-
-## Author
-
-👤 **oreo**
-
-* Github: [@a2369355333](https://github.com/a2369355333)
 
 ## Deploy on Vercel
 
