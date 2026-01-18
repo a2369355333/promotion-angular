@@ -13,6 +13,7 @@ yarn start
 ```
 
 ## Deploy on Vercel
+Project URL: [https://promotion-angular.vercel.app](https://promotion-angular.vercel.app)
 
 
 ## Demo

@@ -119,7 +119,7 @@
                     (click)="openDetailC(sectionC[0])" (keydown.enter)="openDetailC(sectionC[0])" tabindex="0">
                     <div class="w-full h-[150px] custom-md:h-full custom-md:w-1/2">
                         <img class="w-full h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none"
-                            src="{{sectionC[0]?.image}}">
+                            src="{{sectionC[0].image}}">
                     </div>
                     <div class="w-full h-full custom-md:w-1/2 flex justify-center items-center">
                         <span
@@ -190,7 +190,7 @@
                     {{selectedDetailA.title}}
                 </span>
                 <div class="w-full mt-5 flex justify-center">
-                    <img class="w-fit rounded-[10px] object-cover" src="{{selectedDetailA?.image}}">
+                    <img class="w-fit rounded-[10px] object-cover" src="{{selectedDetailA.image}}">
                 </div>
             </div>
             <ng-container *ngFor="let item of selectedDetailAContent">
@@ -244,7 +244,7 @@
                             {{selectedDetailC.title}}
                         </span>
                         <div class="w-full mt-5 flex justify-center">
-                            <img class="w-fit rounded-[10px] object-cover" src="{{selectedSectionC?.image}}">
+                            <img class="w-fit rounded-[10px] object-cover" src="{{selectedSectionC.image}}">
                         </div>
                     </div>
                     <ng-container *ngFor="let item of selectedDetailCContent">
