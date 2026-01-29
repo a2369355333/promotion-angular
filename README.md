@@ -18,4 +18,4 @@ Project URL: [https://promotion-angular.vercel.app](https://promotion-angular.ve
 
 ## Demo
 
-<img width="469" alt="image" src="https://github.com/user-attachments/assets/a00605a0-5a31-4f72-8954-fafafe0fc0cb" />
+<img width="625" height="763" alt="image" src="https://github.com/user-attachments/assets/12d6e27f-d5fb-4462-bfcc-4b5a9ee1e628" />
