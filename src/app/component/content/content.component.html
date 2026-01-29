@@ -42,9 +42,8 @@
                         </div>
 
                         <!-- mask -->
-                        <div class="w-full h-full absolute left-0 top-0 rounded-[20px]"
-                            [style.transition]="transition" (transitionstart)="isAnimating=true"
-                            (transitionend)="isAnimating=false" [ngClass]="{
+                        <div class="w-full h-full absolute left-0 top-0 rounded-[20px]" [style.transition]="transition"
+                            (transitionstart)="isAnimating=true" (transitionend)="isAnimating=false" [ngClass]="{
                         'opacity-0 cursor-pointer': item.visibleStatus == 0, 
                         'opacity-40': item.visibleStatus == 1, 
                         'opacity-50': item.visibleStatus == 2, 
@@ -135,7 +134,7 @@
                             (click)="openDetailC(item)" (keydown.enter)="openDetailC(item)" tabindex="0">
                             <div
                                 class="w-full custom-md:w-1/2 custom-lg:w-full h-[150px] custom-md:h-full custom-lg:h-[150px]">
-                                <img class="h-full object-cover rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none custom-lg:rounded-t-[20px] custom-lg:rounded-br-none"
+                                <img class="w-full h-full object-cover object-center rounded-t-[20px] custom-md:rounded-r-[20px] custom-md:rounded-tl-none custom-lg:rounded-t-[20px] custom-lg:rounded-br-none"
                                     src="{{item?.image}}">
                             </div>
                             <div

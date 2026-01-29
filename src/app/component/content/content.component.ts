@@ -450,7 +450,11 @@ export class ContentComponent implements OnInit {
 
   //section B
   openApp(detail: ZoneBType) {
-    window.open('https://www.google.com', '_blank');
+    const action = detail.action; 
+    if(action.type === 'openSystemBrowser') {
+      const url = action.parameter[0];
+      window.open(url, '_blank');
+    } 
   }
 
   showMoreApps() {
