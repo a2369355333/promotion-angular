@@ -3335,7 +3335,7 @@
           },
           {
             "template": "rightImageAndLeftText",
-            "image": "assets/images/png/article_content_imgB.png",
+            "image": "assets/images/png/tesla_3.png",
             "text": {
               "bg": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod (BG)",
               "cs": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod (CS)",
